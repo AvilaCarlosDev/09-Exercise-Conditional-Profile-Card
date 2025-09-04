@@ -1,5 +1,7 @@
 <!--hide-->
+
 # Tarjeta de Perfil Condicional
+
 <!--endhide-->
 
 **Nota:** Si trabajas localmente, asegúrate de que tienes node.js instalado en tu computadora escribiendo en tu terminal:
@@ -25,6 +27,7 @@ https://github.com/breatheco-de/exercise-conditional-profile-card.git
 **👉 Por favor sigue estos pasos sobre** [cómo comenzar un proyecto de programación](https://4geeks.com/es/lesson/como-comenzar-un-proyecto-de-codificacion).
 
 Para ver el resultado en el navegador, deberás iniciar el proyecto ejecutando el siguiente comando en tu terminal:
+
 ```bash
 $ npm run start
 ```
@@ -45,7 +48,9 @@ Dentro de `src/app.js` hay una función llamada `render` que recibe un objeto `v
 
 ```js
 function render(variables = {}) {
-  document.querySelector("#widget_content").innerHTML = `<div>Website code</div>`;
+  document.querySelector(
+    "#widget_content"
+  ).innerHTML = `<div>Website code</div>`;
 }
 ```
 
@@ -84,46 +89,46 @@ Revisa este video con las instrucciones para que entiendas mejor el ejercicio: h
 
 ## 💡 Atención!
 
-**No** necesitas añadir ningún *event listener* a los elementos que ya están construidos en el proyecto. Esto ya está siendo realizado por esta parte del código:
+**No** necesitas añadir ningún _event listener_ a los elementos que ya están construidos en el proyecto. Esto ya está siendo realizado por esta parte del código:
 
 ```javascript
 document.querySelectorAll(".picker").forEach(function(elm) {
-    elm.addEventListener("change", function(e) {
-      // <- add a listener to every input
-      const attribute = e.target.getAttribute("for"); // when any input changes, collect the value
-      let values = {};
-      values[attribute] =
-        this.value == "" || this.value == "null"
-          ? null
-          : this.value == "true"
-          ? true
-          : this.value == "false"
-          ? false
-          : this.value;
-      render(Object.assign(window.variables, values)); // render again the card with new values
-    });
+  elm.addEventListener("change", function(e) {
+    // <- add a listener to every input
+    const attribute = e.target.getAttribute("for"); // when any input changes, collect the value
+    let values = {};
+    values[attribute] =
+      this.value == "" || this.value == "null"
+        ? null
+        : this.value == "true"
+        ? true
+        : this.value == "false"
+        ? false
+        : this.value;
+    render(Object.assign(window.variables, values)); // render again the card with new values
   });
+});
 ```
 
 Entonces cuando el contenido de los elementos "cambia" se va a actualizar de una vez la variable para cada elemento. Todo lo que necesitas hacer es actualizar el contenido HTML dentro de la función `render`, como se mencionó en la instrucción 1.
 
 ## Valores de variables iniciales
 
-| Nombre | Tipo | Valor por Defecto | Descripción |
-| --- | --- | --- | --- |
-| background | string | null | La url de la imagen que se utilizará como fondo para la portada del perfil |
-| includeCover | boolean | true | Determina si debe mostrarse la portada o no |
-| avatarURL | string | null | La url para el avatar del perfil |
-| socialMediaPosition | string | "right" | puede ser `left` o` right` y determina dónde colocar la barra de redes sociales |
-| twitter | string | null | El nombre de usuario de Twitter que se mostrará en el perfil |
-| github | string | null | El nombre de usuario de Github que se mostrará en el perfil |
-| linkedin | string | null | El nombre de usuario de Linkedin que se mostrará en el perfil |
-| instagram | string | null | El nombre de usuario de Instagram para ser mostrado en el perfil |
-| name | string | null | El nombre del usuario que se mostrará en el perfil |
-| lastName | string | null | El nombre del usuario que se mostrará en el perfil |
-| role | string | null | El nombre del título del trabajo que se mostrará en el perfil |
-| country | string | null | El país de residencia del usuario que se mostrará en el perfil |
-| city | string | null | La ciudad de residencia del usuario que se mostrará en el perfil |
+| Nombre              | Tipo    | Valor por Defecto | Descripción                                                                    |
+| ------------------- | ------- | ----------------- | ------------------------------------------------------------------------------ |
+| background          | string  | null              | La url de la imagen que se utilizará como fondo para la portada del perfil     |
+| includeCover        | boolean | true              | Determina si debe mostrarse la portada o no                                    |
+| avatarURL           | string  | null              | La url para el avatar del perfil                                               |
+| socialMediaPosition | string  | "right"           | puede ser `left` o`right` y determina dónde colocar la barra de redes sociales |
+| twitter             | string  | null              | El nombre de usuario de Twitter que se mostrará en el perfil                   |
+| github              | string  | null              | El nombre de usuario de Github que se mostrará en el perfil                    |
+| linkedin            | string  | null              | El nombre de usuario de Linkedin que se mostrará en el perfil                  |
+| instagram           | string  | null              | El nombre de usuario de Instagram para ser mostrado en el perfil               |
+| name                | string  | null              | El nombre del usuario que se mostrará en el perfil                             |
+| lastName            | string  | null              | El nombre del usuario que se mostrará en el perfil                             |
+| role                | string  | null              | El nombre del título del trabajo que se mostrará en el perfil                  |
+| country             | string  | null              | El país de residencia del usuario que se mostrará en el perfil                 |
+| city                | string  | null              | La ciudad de residencia del usuario que se mostrará en el perfil               |
 
 ## HTML programado manualmente
 
@@ -131,16 +136,32 @@ Este es un ejemplo de una posible salida HTML, vas a tener que remplazar el nomb
 
 ```html
 <div class="widget">
-  <div class="cover"><img src="https://the_url.com/for_the_background.png" /></div>
+  <div class="cover">
+    <img src="https://the_url.com/for_the_background.png" />
+  </div>
   <img src="https://the_url.com/for_the_image.png" class="photo" />
   <h1>Ryan Boylett</h1>
   <h2>Web Developer</h2>
   <h3>Miami, USA</h3>
   <ul class="position-right">
-    <li><a href="https://twitter.com/alesanchezr"><i class="fa fa-twitter"></i></a></li>
-    <li><a href="https://github.com/alesanchezr"><i class="fa fa-github"></i></a></li>
-    <li><a href="https://linkedin.com/alesanchezr"><i class="fa fa-linkedin"></i></a></li>
-    <li><a href="https://instagram.com/alesanchezr"><i class="fa fa-instagram"></i></a></li>
+    <li>
+      <a href="https://twitter.com/alesanchezr"
+        ><i class="fa fa-twitter"></i
+      ></a>
+    </li>
+    <li>
+      <a href="https://github.com/alesanchezr"><i class="fa fa-github"></i></a>
+    </li>
+    <li>
+      <a href="https://linkedin.com/alesanchezr"
+        ><i class="fa fa-linkedin"></i
+      ></a>
+    </li>
+    <li>
+      <a href="https://instagram.com/alesanchezr"
+        ><i class="fa fa-instagram"></i
+      ></a>
+    </li>
   </ul>
 </div>
 ```
